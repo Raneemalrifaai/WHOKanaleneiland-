@@ -1,70 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WHO Healthy City Relationship Map</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        canvas {
-            display: block;
-            margin: 0 auto;
-        }
-
-        #map-container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        canvas { border: 1px solid #ccc; display: block; margin: auto; }
     </style>
 </head>
-
 <body>
-    <div id="map-container">
-        <canvas id="relationshipMap" width="800" height="600"></canvas>
-    </div>
-
+    <h1>WHO Healthy City Relationship Map</h1>
+    <canvas id="mapCanvas" width="800" height="600"></canvas>
     <script>
-        const canvas = document.getElementById('relationshipMap');
-        const context = canvas.getContext('2d');
-        const nodes = [
-            { id: 1, label: 'Node 1', x: 100, y: 100 },
-            { id: 2, label: 'Node 2', x: 300, y: 200 },
-            { id: 3, label: 'Node 3', x: 500, y: 100 },
-            // Add more nodes
-        ];
+        const canvas = document.getElementById("mapCanvas");
+        const ctx = canvas.getContext("2d");
+        const healthFactors = ["Air Quality", "Water Quality", "Nutrition", "Physical Activity", "Mental Health", "Income", "Education", "Access to Healthcare", "Social Support", "Housing", "Safety", "Employment", "Environment"]; 
+        let positions = [];
 
-        function drawNode(node) {
-            context.beginPath();
-            context.arc(node.x, node.y, 20, 0, Math.PI * 2);
-            context.fillStyle = '#007BFF';
-            context.fill();
-            context.strokeStyle = '#FFFFFF';
-            context.stroke();
-            context.closePath();
-            context.fillStyle = '#000000';
-            context.fillText(node.label, node.x - 10, node.y - 25);
+        function initPositions() {
+            healthFactors.forEach((factor, index) => {
+                positions.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    name: factor
+                });
+            });
         }
 
-        function draw() {
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            nodes.forEach(drawNode);
+        function drawMap() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            positions.forEach(pos => {
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, 20, 0, Math.PI * 2);
+                ctx.fillStyle = 'blue';
+                ctx.fill();
+                ctx.closePath();
+                ctx.fillStyle = 'white';
+                ctx.fillText(pos.name, pos.x - 15, pos.y + 5);
+            });
         }
 
-        draw();
+        function physicsSimulation() {
+            positions.forEach((pos, index) => {
+                // Simulate forces and change positions
+                pos.x += (Math.random() - 0.5) * 2;
+                pos.y += (Math.random() - 0.5) * 2;
+                pos.x = Math.max(20, Math.min(canvas.width - 20, pos.x));
+                pos.y = Math.max(20, Math.min(canvas.height - 20, pos.y));
+            });
+        }
 
-        // Physics simulation and interactive features can be added here
+        function update() {
+            physicsSimulation();
+            drawMap();
+            requestAnimationFrame(update);
+        }
+
+        initPositions();
+        update();
     </script>
 </body>
-
 </html>

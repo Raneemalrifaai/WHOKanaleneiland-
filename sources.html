@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Information Sources — Kanaleneiland Health Layers</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:#f5f4f0; --card:#ffffff; --text:#1a1a18; --muted:#5f5e5a; --dim:#888780;
+  --teal:#1D9E75; --border:rgba(0,0,0,0.10); --font:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#1c1c1a; --card:#252523; --text:#e8e6de; --muted:#9c9a92; --dim:#6b6a64; --border:rgba(255,255,255,0.10); }
+}
+body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; }
+nav { background: var(--card); border-bottom: 0.5px solid var(--border); padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+.nav-logo { font-size: 14px; font-weight: 500; color: var(--teal); text-decoration: none; }
+.nav-links { display: flex; gap: 18px; }
+.nav-links a { font-size: 12px; color: var(--muted); text-decoration: none; }
+.nav-links a:hover { color: var(--text); }
+.page-header { background: var(--card); border-bottom: 0.5px solid var(--border); padding: 32px; }
+.page-header h1 { font-size: 24px; font-weight: 500; margin-bottom: 6px; }
+.page-header p { font-size: 13px; color: var(--muted); max-width: 700px; line-height: 1.6; }
+main { max-width: 860px; margin: 0 auto; padding: 32px; }
+.intro-box { background: var(--card); border-radius: 12px; border: 0.5px solid var(--border); padding: 20px 24px; margin-bottom: 28px; }
+.intro-box p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+.intro-box p + p { margin-top: 10px; }
+.pillar-section { margin-bottom: 32px; }
+.pillar-label { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
+.source-card { background: var(--card); border: 0.5px solid var(--border); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+.sc-header { display: flex; align-items: flex-start; gap: 12px; padding: 14px 18px; cursor: pointer; transition: background .1s; }
+.sc-header:hover { background: var(--bg); }
+.sc-num { font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 8px; white-space: nowrap; flex-shrink: 0; margin-top: 1px; }
+.sc-title { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.4; }
+.sc-year { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.sc-chevron { margin-left: auto; font-size: 12px; color: var(--dim); flex-shrink: 0; transition: transform .2s; }
+.sc-chevron.open { transform: rotate(180deg); }
+.sc-body { padding: 0 18px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.2s; }
+.sc-body.open { max-height: 600px; padding: 4px 18px 16px; }
+.sc-desc { font-size: 12px; color: var(--muted); line-height: 1.65; margin-bottom: 10px; }
+.sc-relevance { font-size: 11px; padding: 8px 12px; border-radius: 7px; margin-bottom: 10px; line-height: 1.55; }
+.sc-cite { font-size: 10px; color: var(--dim); font-style: italic; padding: 6px 10px; background: var(--bg); border-radius: 6px; border-left: 2px solid; }
+.pillars-summary { background: var(--card); border-radius: 12px; border: 0.5px solid var(--border); padding: 20px 24px; margin-bottom: 32px; }
+.pillars-summary h3 { font-size: 14px; font-weight: 500; margin-bottom: 12px; }
+.six-p-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.sp-card { padding: 10px 12px; border-radius: 8px; border: 0.5px solid var(--border); }
+.sp-label { font-size: 11px; font-weight: 500; margin-bottom: 3px; }
+.sp-def { font-size: 10px; color: var(--muted); line-height: 1.4; }
+footer { text-align: center; font-size: 11px; color: var(--dim); padding: 32px; border-top: 0.5px solid var(--border); font-style: italic; }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">Kanaleneiland Health Layers</a>
+  <div class="nav-links">
+    <a href="bubble_map.html">Bubble Map</a>
+    <a href="6p_criteria.html">6P Criteria</a>
+    <a href="cascade_map.html">Cascade Map</a>
+    <a href="intervention_sequence.html">Interventions</a>
+    <a href="full_intervention.html">Full Simulator</a>
+    <a href="sources.html">Sources</a>
+  </div>
+</nav>
+<div class="page-header">
+  <h1>The Meaning of Healthy Cities — Information Sources</h1>
+  <p>Every source used in the visuals, maps, and analysis. Each entry explains what the study proved, why it creates a specific connection in the relationship map, and how it applies to Kanaleneiland specifically.</p>
+</div>
+<main>
+
+  <div class="intro-box">
+    <p>A <strong>Healthy City</strong> is not simply a city with good hospitals. The WHO defines it as one that continuously creates and improves its physical and social environments and expands community resources — enabling people to reach their maximum potential.</p>
+    <p>The WHO Phase VII framework (2019–2024) organises the conditions for health into six interdependent pillars — the 6Ps. No single pillar is sufficient alone. They form a causal system: economic inequality undermines housing and mental health; poor housing raises loneliness; loneliness erodes social cohesion; weak cohesion reduces resilience.</p>
+  </div>
+
+  <div class="pillars-summary">
+    <h3>The six pillars (6P Framework) — WHO Phase VII</h3>
+    <div class="six-p-grid">
+      <div class="sp-card" style="border-color:#534AB744"><div class="sp-label" style="color:#534AB7">People</div><div class="sp-def">Physical health, mental wellbeing, loneliness, healthcare access — direct human health outcomes.</div></div>
+      <div class="sp-card" style="border-color:#1D9E7544"><div class="sp-label" style="color:#1D9E75">Place</div><div class="sp-def">Housing safety, transport equity, mobility — the built environment shaping daily access and activity.</div></div>
+      <div class="sp-card" style="border-color:#D4537E44"><div class="sp-label" style="color:#D4537E">Participation</div><div class="sp-def">Social cohesion and resilience — the fabric enabling collective coping and mutual support.</div></div>
+      <div class="sp-card" style="border-color:#BA751744"><div class="sp-label" style="color:#BA7517">Prosperity</div><div class="sp-def">Economic equity and child poverty — the upstream 'causes of causes' driving every indicator.</div></div>
+      <div class="sp-card" style="border-color:#378ADD44"><div class="sp-label" style="color:#378ADD">Peace</div><div class="sp-def">Governance and equity — the enabling condition integrating health into all city policies.</div></div>
+      <div class="sp-card" style="border-color:#63992244"><div class="sp-label" style="color:#639922">Planet</div><div class="sp-def">Green space, biodiversity, air quality, climate resilience — multi-pathway environmental determinants.</div></div>
+    </div>
+  </div>
+
+  <div id="sources-container"></div>
+
+</main>
+<footer>All sources are publicly available. CBS data: opendata.cbs.nl · WHO framework: who.int/europe/healthy-cities · Survey data: rivm.nl/gezondheidsmonitors</footer>
+
+<script>
+const SOURCES = [
+  {
+    pillar:'Core Framework', color:'#888780', bgLight:'#F1EFE8',
+    entries:[
+      {
+        title:'WHO European Healthy Cities Network — Phase VII (2019–2024)',
+        year:'2019–2024 · WHO Regional Office for Europe',
+        desc:'The foundational source for the entire map. Phase VII formally defines the Healthy City concept and establishes the 6P model as the operational framework. It added two non-negotiable requirements: (1) intersectoral governance — health embedded in all city policies; (2) community participation — residents involved in decisions that affect their health.',
+        relevance:'This is why the Healthy City central bubble exists in the map and why Governance sits as an enabling condition connecting to every other pillar rather than as one factor among equals.',
+        cite:'WHO European Healthy Cities Network. Phase VII 2019–2024: Goals and Requirements. Copenhagen: WHO Regional Office for Europe. who.int/europe/healthy-cities'
+      },
+    ]
+  },
+  {
+    pillar:'Prosperity — Economic Equity', color:'#BA7517', bgLight:'#FAEEDA',
+    entries:[
+      {
+        title:'Marmot Review — Fair Society, Healthy Lives (2010)',
+        year:'2010 · UCL Institute of Health Equity',
+        desc:'Sir Michael Marmot introduced the concept of the "causes of the causes" — proving that poverty and economic insecurity causally produce poor health outcomes through multiple simultaneous pathways. Health inequalities are systematically produced by social structure, not individual choices.',
+        relevance:'The 15-point socio-economic gap in Kanaleneiland is the upstream driver of the loneliness gap, mental health gap, physical impairment gap, and park access deficit simultaneously. Most connected bubble in the map.',
+        cite:'Marmot M et al. (2010). Fair Society, Healthy Lives: The Marmot Review. Strategic Review of Health Inequalities in England post-2010. UCL Institute of Health Equity.'
+      },
+      {
+        title:'WHO Commission on Social Determinants of Health (CSDH, 2008)',
+        year:'2008 · World Health Organization',
+        desc:'The global-level evidence base behind Marmot. The CSDH established that 80% of health outcomes are determined by social, economic, and environmental factors — not clinical healthcare. This is the scientific basis for why healthcare access alone cannot compensate for economic inequality, poor housing, or absent green space.',
+        relevance:'Why the Health & Care Access bubble connects through economic equity and governance rather than standing as the primary solution.',
+        cite:'WHO Commission on Social Determinants of Health (2008). Closing the gap in a generation: health equity through action on the social determinants of health. Final Report. Geneva: WHO.'
+      },
+      {
+        title:'UNICEF Innocenti — Child Poverty in Rich Countries',
+        year:'Multiple years · UNICEF Innocenti Research Centre',
+        desc:"Kanaleneiland's child poverty rate of 33.6% is more than double Utrecht's 13.2%. UNICEF Innocenti documents how child poverty constrains access to nutrition, play, education, and health services simultaneously — creating intergenerational disadvantage.",
+        relevance:'Directly links the Child Poverty bubble to Physical Health, Mental Wellbeing, and Housing in the cascade map.',
+        cite:"UNICEF Innocenti Research Centre. Child Poverty in Rich Countries report series. CBS StatLine — Neighbourhood and District Statistics Netherlands."
+      },
+    ]
+  },
+  {
+    pillar:'People — Health & Wellbeing', color:'#534AB7', bgLight:'#EEEDFE',
+    entries:[
+      {
+        title:'Holt-Lunstad et al. — Loneliness and Social Isolation as Risk Factors for Mortality',
+        year:'2015 · PLOS Medicine',
+        desc:'Meta-analysis of 148 studies covering over 300,000 participants. Found that social isolation and loneliness increase mortality risk by 26–32% — equivalent to smoking 15 cigarettes per day. Loneliness ranked above obesity, physical inactivity, and air pollution in its effect on mortality.',
+        relevance:"With a loneliness index 12 points below Utrecht, Kanaleneiland carries a significant hidden mortality burden that standard physical health metrics would not capture. This is why loneliness is treated as a clinical emergency, not a social comfort issue.",
+        cite:'Holt-Lunstad J, Smith TB, Baker M, Harris T, Stephenson D (2015). Loneliness and Social Isolation as Risk Factors for Mortality: A Meta-Analytic Review. PLOS Medicine. doi:10.1371/journal.pmed.1001867'
+      },
+      {
+        title:'BRE/Savills Healthy Cities Index (2023)',
+        year:'2023 · BRE Group & Savills',
+        desc:'Provides the composite scoring framework for the Physical Health Index (59.8 Kanaleneiland vs 73 Utrecht). The 52% physical impairment rate in Kanaleneiland versus 28% in Utrecht is the most striking statistic in the dataset and drives the size of the Physical Health bubble.',
+        relevance:'The index methodology — combining impairment rates, restricted activity, and perceived health — is the basis for all physical health composite scores used throughout the analysis.',
+        cite:'BRE/Savills Healthy Cities Index 2023. CBS OpenData — Neighbourhood Health Survey, Table 86270ENG. opendata.cbs.nl'
+      },
+    ]
+  },
+  {
+    pillar:'Place — Housing, Transport & Built Environment', color:'#1D9E75', bgLight:'#E1F5EE',
+    entries:[
+      {
+        title:'WHO Housing and Health Guidelines (2018)',
+        year:'2018 · World Health Organization',
+        desc:'WHO formally classified cold, damp, overcrowded, and insecure housing as health hazards with direct causal links to respiratory disease, cardiovascular outcomes, childhood development, and mental health. Housing connects bidirectionally in the map: poverty causes poor housing, and poor housing causes disease and stress.',
+        relevance:'The housing bubble connects to both physical health and mental wellbeing. Energy retrofit co-benefits (health + climate) make this intervention fundable from three budgets simultaneously.',
+        cite:'WHO (2018). WHO Housing and Health Guidelines. Geneva: World Health Organization. ISBN 978-92-4-155037-6.'
+      },
+      {
+        title:'WHO Global Action Plan on Physical Activity (GAPPA) 2018–2030',
+        year:'2018 · World Health Organization',
+        desc:'GAPPA establishes that active travel — walking and cycling — is one of the most cost-effective NCD prevention interventions available to cities. Physical inactivity is the fourth leading global mortality risk factor. The train station at 2.6km from Kanaleneiland directly affects whether residents can incorporate active travel into daily routines.',
+        relevance:'Scientific basis for the Transport & Mobility bubble and why active travel infrastructure on Beneluxlaan is a health intervention as much as a mobility one.',
+        cite:'WHO (2018). Global Action Plan on Physical Activity 2018–2030: More Active People for a Healthier World. Geneva: WHO. ISBN 978-92-4-151418-7.'
+      },
+      {
+        title:'Buildings & Cities Journal — Housing Retrofit Co-Benefits (2022)',
+        year:'2022 · UCL Open Publishing',
+        desc:'Documents evidence that housing energy retrofit delivers simultaneous health and climate benefits — warmer homes reduce respiratory illness and fuel poverty while cutting carbon emissions. This is the scientific basis for the Housing bubble connecting to Climate Resilience.',
+        relevance:'Makes the co-benefits investment case: one programme reduces fuel poverty, improves health, AND cuts carbon — fundable from health, housing, and climate budgets simultaneously.',
+        cite:'Buildings and Cities Journal (2022). Retrofit co-benefits: health, wellbeing and carbon outcomes from housing improvement. UCL Open Publishing.'
+      },
+    ]
+  },
+  {
+    pillar:'Planet — Green Space, Biodiversity & Climate', color:'#639922', bgLight:'#EAF3DE',
+    entries:[
+      {
+        title:'PMC Systematic Review — Urban Green Space and Health (2021)',
+        year:'2021 · PubMed Central · PMID 34470696',
+        desc:'This is the most important source for the Green Space bubble. Confirmed three distinct simultaneous health pathways: (1) Harm reduction — filters PM2.5, ozone, and NO2; (2) Mental capacity restoration — reduces cortisol, blood pressure, and cognitive fatigue; (3) Capacity building — enables physical activity, social interaction, and community cohesion.',
+        relevance:'Three-pathway evidence is precisely why the Green Space bubble connects to Mental Wellbeing, Physical Health, Air Quality, and Social Cohesion simultaneously — more connections than any other built-environment factor. The 27.5-point gap is not a luxury deficit — it is a health infrastructure emergency.',
+        cite:'PMC Systematic Review (2021). Urban green space and health: A systematic review. PubMed Central PMID 34470696. International Journal of Environmental Research and Public Health.'
+      },
+      {
+        title:"King's College London — Urban Mind Study (2021)",
+        year:'2021 · Proceedings of the Royal Society B',
+        desc:'Used real-time mobile experience sampling across European cities to show that mental wellbeing scores are significantly higher in biodiverse green environments compared to uniform green spaces. Species richness amplifies the mental restoration effect.',
+        relevance:"Scientific basis for Kanaleneiland's +9.3 biodiversity advantage being identified as an underused health asset. The canal corridor biodiversity is not just environmental value — it is a mental health intervention waiting to be activated.",
+        cite:"Urban Mind Study (2021). King's College London Institute of Psychiatry, Psychology and Neuroscience. Published in Proceedings of the Royal Society B."
+      },
+      {
+        title:'WHO Global Air Quality Guidelines (2021)',
+        year:'2021 · World Health Organization',
+        desc:'WHO estimates 7 million premature deaths per year globally are attributable to air pollution. The 2021 guidelines significantly tightened PM2.5, NO2, and ozone limits. Urban trees and vegetation are the primary nature-based solution for localised air pollution reduction.',
+        relevance:'Scientific basis for the Air Quality bubble depending on Green Space. Beneluxlaan traffic is the primary local air pollution source; tree planting along its margins is the direct intervention.',
+        cite:'WHO (2021). WHO Global Air Quality Guidelines: PM2.5, PM10, Ozone, NO2, SO2 and CO. Geneva: World Health Organization.'
+      },
+      {
+        title:'IPCC Sixth Assessment Report (AR6) — Urban Chapter',
+        year:'2021 · Intergovernmental Panel on Climate Change',
+        desc:'Documents that low-income urban districts experience disproportionate exposure to urban heat islands, flooding, and extreme weather — less tree cover, older housing, fewer adaptation resources. Climate resilience is an equity issue, not merely an environmental one.',
+        relevance:'Why Climate Resilience connects to Biodiversity and Housing in the map. Nature-based solutions are the primary adaptation tools — and they also deliver mental health and biodiversity co-benefits.',
+        cite:'IPCC (2021). Sixth Assessment Report, Chapter 6: Cities, Settlements and Key Infrastructure. Contribution of Working Group II to the Sixth Assessment Report of the Intergovernmental Panel on Climate Change.'
+      },
+    ]
+  },
+  {
+    pillar:'Participation — Social Cohesion & Resilience', color:'#D4537E', bgLight:'#FBEAF0',
+    entries:[
+      {
+        title:'PMC — Social Cohesion and Mental Health (Multiple Reviews, 2018–2023)',
+        year:'2018–2023 · PubMed Central',
+        desc:'Multiple systematic reviews confirmed that social cohesion and mental health are mutually reinforcing — each strengthens the other. Communities with stronger social bonds show lower rates of depression and anxiety even when controlling for income and physical health.',
+        relevance:"Why Social Cohesion both receives influence from and sends influence to multiple other nodes in the map. Kanaleneiland's small cohesion gap (−2 pts) is the foundation to build from.",
+        cite:'PMC Systematic Reviews on social cohesion and mental health outcomes in urban populations. PubMed Central, multiple publications 2018–2023.'
+      },
+      {
+        title:'WHO Phase VII Participation Requirements (2019–2024)',
+        year:'2019 · WHO Regional Office for Europe',
+        desc:'WHO Phase VII made community participation in governance decisions a mandatory criterion for Healthy City designation — not an optional enhancement. Residents from disadvantaged communities must participate in decisions about housing, transport, green space, and health services.',
+        relevance:'Scientific basis for Social Cohesion connecting to Governance in the map. Without community participation, governance cannot be genuinely intersectoral.',
+        cite:'WHO European Healthy Cities Network (2019). Phase VII 2019–2024: Goals and Requirements. Copenhagen: WHO Regional Office for Europe.'
+      },
+    ]
+  },
+  {
+    pillar:'Peace — Governance & Equity', color:'#378ADD', bgLight:'#E6F1FB',
+    entries:[
+      {
+        title:'WHO Health in All Policies (HiAP) Framework (2013)',
+        year:'2013 · WHO Regional Office for Europe',
+        desc:'Requires city governments to systematically assess health implications of decisions across all sectors. Without HiAP governance, the green space team, housing team, transport team, and health team each work in isolation. Kanaleneiland\'s biodiversity strength cannot address its mental health deficit unless governance explicitly links the two.',
+        relevance:"This is why Governance is positioned as the enabling condition for all other pillars — not one factor among equals. It is the prerequisite that makes all other interventions compound rather than cancel each other out.",
+        cite:"WHO Regional Office for Europe (2013). Health in All Policies: Seizing opportunities, implementing policies. Helsinki Statement. Eighth Global Conference on Health Promotion."
+      },
+    ]
+  },
+  {
+    pillar:'Empirical Data — CBS & Survey Sources', color:'#5F5E5A', bgLight:'#F1EFE8',
+    entries:[
+      {
+        title:'CBS OpenData Netherlands — Kerncijfers Wijken en Buurten (Table 86270ENG)',
+        year:'Annual · Statistics Netherlands (CBS)',
+        desc:'All numerical scores in the maps originate from this dataset. Statistics Netherlands surveys every neighbourhood in the Netherlands annually. Provides raw indicators including impairment rates, loneliness scores, perceived health ratings, child poverty rates, green space accessibility indices, biodiversity scores, and facility distance measurements.',
+        relevance:'The composite indices (Perceived Health, Mental Health Risk, Loneliness, Physical Health, Socio-Economic, Social Cohesion, Park Accessibility, Biodiversity) were all derived from this dataset using equal-weight inverse averaging.',
+        cite:'CBS (2023). Kerncijfers wijken en buurten 2023. Table 86270ENG. Statistics Netherlands. opendata.cbs.nl/#/CBS/en/dataset/86270ENG/table'
+      },
+      {
+        title:'Gezondheidsmonitor Volwassenen en Ouderen (2020/2022)',
+        year:'2020, 2022 · RIVM / GGD / CBS',
+        desc:'The Public Health Monitor for Adults and Elderly. Joint survey run by all 25 Dutch regional health services (GGDs), RIVM, and CBS every four years. The 2022 edition surveyed 364,557 residents. Uses the de Jong-Gierveld loneliness scale, the Kessler psychological distress scale, and validated physical health questionnaires. Small-area estimates (kleine-domeinschattingen) for districts like Kanaleneiland are produced using structured additive regression models.',
+        relevance:'The actual survey that produced the raw data behind every CBS neighbourhood health indicator used in this analysis. Survey questionnaire and methodology available at rivm.nl/gezondheidsmonitors.',
+        cite:'RIVM / GGD Nederland / CBS (2022). Gezondheidsmonitor Volwassenen en Ouderen 2022. Bilthoven: RIVM. Survey data portal: rivm.nl/gezondheidsmonitors/volwassenen-en-ouderen'
+      },
+    ]
+  },
+];
+
+const container = document.getElementById('sources-container');
+SOURCES.forEach(section => {
+  const sec = document.createElement('div');
+  sec.className = 'pillar-section';
+  const label = document.createElement('div');
+  label.className = 'pillar-label';
+  label.style.cssText = `background:${section.bgLight};color:${section.color};border:0.5px solid ${section.color}44;`;
+  label.innerHTML = `<span style="width:8px;height:8px;border-radius:50%;background:${section.color};flex-shrink:0;display:inline-block;"></span>${section.pillar}`;
+  sec.appendChild(label);
+
+  section.entries.forEach((entry, i) => {
+    const card = document.createElement('div');
+    card.className = 'source-card';
+    const header = document.createElement('div');
+    header.className = 'sc-header';
+    header.innerHTML = `<span class="sc-num" style="background:${section.bgLight};color:${section.color}">${String(i+1).padStart(2,'0')}</span><div><div class="sc-title">${entry.title}</div><div class="sc-year">${entry.year}</div></div><span class="sc-chevron" id="chev-${section.pillar}-${i}">▼</span>`;
+    const body = document.createElement('div');
+    body.className = 'sc-body';
+    body.id = `body-${section.pillar}-${i}`;
+    body.innerHTML = `<p class="sc-desc">${entry.desc}</p><div class="sc-relevance" style="background:${section.bgLight};color:${section.color};border-left:3px solid ${section.color};"><strong>Why it matters for Kanaleneiland:</strong> ${entry.relevance}</div><div class="sc-cite" style="border-color:${section.color};">${entry.cite}</div>`;
+    header.onclick = () => {
+      const isOpen = body.classList.contains('open');
+      body.classList.toggle('open', !isOpen);
+      document.getElementById(`chev-${section.pillar}-${i}`).classList.toggle('open', !isOpen);
+    };
+    card.appendChild(header);
+    card.appendChild(body);
+    sec.appendChild(card);
+  });
+  container.appendChild(sec);
+});
+</script>
+</body>
+</html>
